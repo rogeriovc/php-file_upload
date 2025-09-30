@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS arquivosdb;
+USE arquivosdb;
+
+CREATE TABLE IF NOT EXISTS imagens(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    nome_original VARCHAR(255) NOT NULL,
+    data_envio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    caminho VARCHAR(255) NOT NULL,
+    tamanho INT NOT NULL COMMENT 'Tamanho em bytes'
+);
+
