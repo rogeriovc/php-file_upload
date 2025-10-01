@@ -1,13 +1,90 @@
-1. Fazer a validação por tamanho da imagem, não permitindo imagem maior que 16MB.
+#  Sistema de Armazenamento de Imagens
 
-2. Fazer a criação automática do diretório upload caso não exista.
+Sistema web para upload, visualização e gerenciamento de imagens com PHP e MySQL.
 
-3. Construa um sistema para armazenamento de imagens, onde o usuário possa escolher arquivos de imagens para salvar e posteriormente consiga visualizar as imagens em formato de grid. Além disso o sistema deve:
+##  Funcionalidades
 
-    1.1. garantir que apenas imagens possam ser salvas
+-  Upload de imagens (JPEG, PNG, GIF, WEBP)
+-  Limite de 16MB por arquivo
+-  Validação de tipo e extensão
+-  Visualização em grid responsivo
+-  Download de imagens
+-  Exclusão de imagens
+-  Armazenamento seguro (nomes únicos)
+-  Registro de nome original e data de envio
 
-    1.2. armazenar as imagens de forma segura não sobrepondo imagens enviadas anteriormente
+##  Requisitos
 
-    1.3. armazenar também o nome original e data de envio
+- XAMPP (ou WAMP/LAMP)
+- PHP 7.4 ou superior
+- MySQL 5.7 ou superior
 
-    1.4. permitir fazer download da imagem ao selecionar na grid
+##  Instalação
+
+1. **Extraia os arquivos na pasta htdocs do XAMPP**
+   ```
+   C:\xampp\htdocs\nome-da-pasta
+   ```
+
+2. **Inicie Apache e MySQL no XAMPP Control Panel**
+
+3. **Configure o banco de dados**
+   - Edite `database/Database.php` com suas credenciais MySQL
+   - Acesse http://localhost/phpmyadmin
+   - Crie o banco de dados executando o script `database/ddl.sql`
+
+4. **Acesse no navegador**
+   ```
+   http://localhost/nome-da-pasta
+   ```
+   *Exemplo: `http://localhost/php-file_upload`*
+
+##  Estrutura
+
+```
+├── assets/
+│   └── style.css          # Estilos da aplicação
+├── database/
+│   ├── Database.php       # Conexão com banco
+│   └── ddl.sql           # Script de criação do banco
+├── model/
+│   └── ArquivosModel.php # Model para operações
+├── upload/               # Diretório de imagens (criado automaticamente)
+├── index.php            # Página principal
+├── upload.php           # Processa upload
+└── delete.php           # Processa exclusão
+```
+
+##  Como Usar
+
+1. **Enviar imagem**: Clique em "Escolha uma imagem", selecione o arquivo e clique em "Enviar Imagem"
+2. **Visualizar**: As imagens aparecem automaticamente na galeria
+3. **Baixar**: Clique no botão "Baixar" no card da imagem
+4. **Deletar**: Clique no botão "Deletar" e confirme a exclusão
+
+##  Segurança
+
+- Validação de tipo MIME
+- Verificação de extensão
+- Validação com `getimagesize()`
+- Nomes únicos para evitar sobrescrita
+- Limite de tamanho de 16MB
+- Proteção contra XSS com `htmlspecialchars()`
+
+##  Tecnologias
+
+- **Backend**: PHP 7.4+
+- **Banco de Dados**: MySQL
+- **Frontend**: HTML5, CSS3
+- **Design**: Responsivo e moderno
+
+##  Observações
+
+- O diretório `upload/` é criado automaticamente se não existir
+- Imagens são armazenadas com nomes únicos (timestamp + uniqid)
+- O nome original é preservado no banco de dados
+- Ao deletar, tanto o arquivo quanto o registro são removidos
+
+---
+
+**Desenvolvido com carinho em PHP**

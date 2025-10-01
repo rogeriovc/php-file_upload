@@ -71,12 +71,23 @@ unset($_SESSION['tipo_mensagem']);
                                 <strong>Tamanho:</strong> <?php echo number_format($imagem['tamanho'] / 1024, 2); ?> KB
                             </p>
                         </div>
-                        <a href="<?php echo htmlspecialchars($imagem['caminho']); ?>" download="<?php echo htmlspecialchars($imagem['nome']); ?>" class="btn-download">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
-                                <path d="M160-80v-80h640v80H160Zm320-160L200-600h160v-280h240v280h160L480-240Zm0-130 116-150h-76v-280h-80v280h-76l116 150Zm0-150Z"/>
-                            </svg>
-                            Baixar
-                        </a>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <a href="<?php echo htmlspecialchars($imagem['caminho']); ?>" download="<?php echo htmlspecialchars($imagem['nome']); ?>" class="btn-download" style="flex: 1;">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                    <path d="M160-80v-80h640v80H160Zm320-160L200-600h160v-280h240v280h160L480-240Zm0-130 116-150h-76v-280h-80v280h-76l116 150Zm0-150Z"/>
+                                </svg>
+                                Baixar
+                            </a>
+                            <form method="POST" action="delete.php" onsubmit="return confirm('Tem certeza que deseja deletar esta imagem?');" style="flex: 1;">
+                                <input type="hidden" name="id" value="<?php echo $imagem['id']; ?>">
+                                <button type="submit" class="btn-delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                                        <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
+                                    </svg>
+                                    Deletar
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>

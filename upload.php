@@ -91,7 +91,7 @@ if (!file_exists($diretorioDestino)) {
 
 $caminhoTemporario = $imagem["tmp_name"];
 
-// Tratamento para nome de arquivo único (evita sobrescrita)
+// Tratamento para nome de arquivo único 
 $nomeOriginal = basename($imagem["name"]);
 $nomeUnico = uniqid() . '_' . time() . '.' . $arquivoExtensao;
 $caminhoDestino = $diretorioDestino . $nomeUnico;
